@@ -15,7 +15,7 @@ O jogo foi desenvolvido com:
 
 ## Funcionalidades em JavaScript
 
-### 🃏 Criação dinâmica do tabuleiro
+### Criação dinâmica do tabuleiro
 As cartas são criadas dinamicamente com base na dificuldade escolhida. O número de linhas e colunas varia conforme:
 
 ```js
