@@ -1,0 +1,408 @@
+/* Estilo Rockeiro */
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Rock+Salt&family=Creepster&display=swap');
+
+body {
+  text-align: center;
+  font-family: 'Arial Black', sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+  background-image: url('../assets/fundo.avif');
+  background-size: cover;
+  background-attachment: fixed;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.5rem;
+  color: #ff0000;
+  text-shadow: 3px 3px 0 #000, 
+              -1px -1px 0 #000, 
+              1px -1px 0 #000, 
+              -1px 1px 0 #000, 
+              1px 1px 0 #000;
+  margin: 20px 0;
+  font-family: 'Creepster', cursive;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: linear-gradient(to right, #ff0000, #990000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Botões Estilo Rock */
+#buttons-container {
+  margin: 30px 0;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 10px;
+  border: 2px solid #ff0000;
+  box-shadow: 0 0 15px #ff0000;
+}
+
+#buttons-container button, #restart {
+  border: 2px solid #ff0000;
+  padding: 15px 30px;
+  margin: 0 15px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background-color: #000;
+  color: #fff;
+  border-radius: 50px;
+  transition: all 0.3s;
+  font-family: 'Rock Salt', cursive;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+#buttons-container button::before, #restart::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.4), transparent);
+  transition: 0.5s;
+}
+
+#buttons-container button:hover, #restart:hover {
+  background-color: #ff0000;
+  color: #000;
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #ff0000;
+}
+
+#buttons-container button:hover::before, #restart:hover::before {
+  left: 100%;
+}
+
+/* Tabuleiro Estilo Metal */
+#game-container {
+  width: 90%;
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 15px;
+  border: 3px solid #ff0000;
+  box-shadow: 0 0 25px #ff0000;
+}
+
+#memory-board {
+  display: grid;
+  grid-gap: 15px;
+  margin: 30px auto;
+  justify-content: center;
+  perspective: 1000px;
+}
+
+.memory-card {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, #333 0%, #000 100%);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.5s;
+  position: relative;
+  transform-style: preserve-3d;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+  border: 2px solid #444;
+}
+
+.memory-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #ff0000;
+}
+
+.memory-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.card-back {
+  background: linear-gradient(135deg, #222 0%, #000 100%);
+  color: #ff0000;
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 0 #000;
+  border: 2px solid #ff0000;
+}
+
+.card-front {
+  background: #000;
+  transform: rotateY(180deg);
+  border: 2px solid #ff0000;
+  overflow: hidden;
+}
+
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* Placar Estilo Rock */
+#scoreboard {
+  font-size: 1.5rem;
+  margin: 30px 0;
+  display: flex;
+  justify-content: space-around;
+  font-family: 'Black Ops One', cursive;
+  color: #fff;
+  text-shadow: 2px 2px 0 #000;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid #ff0000;
+}
+
+#scoreboard span {
+  color: #ff0000;
+  font-weight: bold;
+}
+
+/* Mensagem Estilo Metal */
+#message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #000 0%, #222 100%);
+  color: #fff;
+  padding: 40px 60px;
+  border-radius: 15px;
+  text-align: center;
+  z-index: 100;
+  border: 3px solid #ff0000;
+  box-shadow: 0 0 30px #ff0000;
+  font-family: 'Creepster', cursive;
+}
+
+#message p {
+  font-size: 2.5rem;
+  margin: 0;
+  color: #ff0000;
+  text-shadow: 2px 2px 0 #000;
+}
+
+/* Efeitos Especiais */
+@keyframes pulse {
+  0% { box-shadow: 0 0 10px #ff0000; }
+  50% { box-shadow: 0 0 30px #ff0000; }
+  100% { box-shadow: 0 0 10px #ff0000; }
+}
+
+.highlight {
+  animation: pulse 1.5s infinite;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  #buttons-container button {
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 0.9rem;
+  }
+  
+  .memory-card {
+    width: 80px;
+    height: 80px;
+  }
+  
+  #message {
+    width: 90%;
+    padding: 20px;
+  }
+  
+  #message p {
+    font-size: 1.5rem;
+  }
+}
+
+/* Esconde elementos */
+.hide {
+  display: none !important;
+}
+
+/* Ajuste no tamanho padrão dos cards */
+.memory-card {
+  width: 140px;
+  height: 140px;
+}
+
+/* Responsivo aprimorado */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  #buttons-container button,
+  #restart {
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 0.8rem;
+  }
+
+  .memory-card {
+    width: 100px;
+    height: 100px;
+  }
+
+  #memory-board {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: 10px;
+  }
+
+  #scoreboard {
+    flex-direction: column;
+    gap: 10px;
+    font-size: 1.2rem;
+  }
+
+  #message {
+    width: 90%;
+    padding: 20px;
+  }
+
+  #message p {
+    font-size: 1.5rem;
+  }
+}
+
+
+
+
+/* Ocultação padrão */
+.hide {
+  display: none !important;
+}
+
+/* Estilização do título com classe específica */
+.rock-title {
+  font-family: 'Creepster', cursive;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: linear-gradient(to right, #ff0000, #990000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+
+/* Estilo dos cards adaptado para grid Bootstrap */
+.memory-card {
+  background: linear-gradient(135deg, #333 0%, #000 100%);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.5s;
+  position: relative;
+  transform-style: preserve-3d;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.7);
+  border: 2px solid #444;
+  aspect-ratio: 1 / 1;
+}
+
+.memory-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #ff0000;
+}
+
+.memory-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card-front, .card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.card-back {
+  background: linear-gradient(135deg, #222 0%, #000 100%);
+  color: #ff0000;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 0 #000;
+  border: 2px solid #ff0000;
+}
+
+.card-front {
+  background: #000;
+  transform: rotateY(180deg);
+  border: 2px solid #ff0000;
+  overflow: hidden;
+}
+
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* Destaque para cartas corretas */
+.highlight {
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 10px #ff0000; }
+  50% { box-shadow: 0 0 30px #ff0000; }
+  100% { box-shadow: 0 0 10px #ff0000; }
+}
+
+/* Ajustes para mensagem centralizada */
+#message {
+  z-index: 1050; /* acima do conteúdo */
+}
+
+/* Responsivo - cartas menores em telas pequenas */
+@media (max-width: 768px) {
+  .memory-card {
+    aspect-ratio: 1 / 1;
+  }
+
+  #message p {
+    font-size: 1.5rem;
+  }
+}
+
+
+
+/* Grid fluido para os cards */
+#memory-board.memory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  gap: 10px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 10px;
+}
